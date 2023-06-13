@@ -39,9 +39,13 @@ class ProductCRUD(APIView):
     def patch(self,request,id):
         id=request.data['id']
         PO=Product.objects.get(id=id)
-        PO.Pname=request.data['Pname']
-        PO.save()
-        return Response({'success':'Product is Partially Updated'})
+        UPO=ProductSerializer(PO,data=request.data,partial=True)
+        if UPO.is_valid():
+            UPO.save()
+            return Response({'message':'Product is Partially Updated'})
+        else:
+            return Response({'Failed':'Product is not Updated'})
+        
     
 
 
