@@ -20,5 +20,5 @@ from cherry.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('ProductCRUD/',ProductCRUD.as_view(),name='ProductCRUD'),
+    path('ProductCRUD/<id>',ProductCRUD.as_view(),name='ProductCRUD'),
 ]
